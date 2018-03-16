@@ -1,0 +1,55 @@
+<div class="wthree-dot">
+    <a href="../index.html"><h1><img src="./assets/img/logo.png"></h1></a>
+    <div class="profile">
+        <div class="wrap">
+            
+            <div class="content-main content-main1">
+                <div class="w3ls-subscribe">
+                    <h4>New Customer?</h4>
+                    <p>Hey! there's more to explore inside.</p>
+
+                 <form [formGroup]="registerForm">
+
+                    <div class="form-group" >
+                            <!-- <label for="username">Email</label> -->
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [(ngModel)]="signUpDetails.firstName"  required />
+                            <div *ngIf="!registerForm.controls['firstName'].valid&&registerForm.controls['firstName'].dirty" class="help-block"><span style="color:red;">First Name is required</span></div>
+                        </div>
+
+
+                         <div class="form-group" >
+                            <!-- <label for="username">Email</label> -->
+                            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [(ngModel)]="signUpDetails.lastName"  required />
+
+                            <div *ngIf="!registerForm.controls['lastName'].valid&&registerForm.controls['lastName'].dirty" class="help-block"><span style="color:red;">Last Name is required</span></div>
+                        </div>
+                        
+                        <div class="form-group" >
+                            <!-- <label for="username">Email</label> -->
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="signUpDetails.email"  required />
+
+                            <div *ngIf="!registerForm.controls['email'].valid&&registerForm.controls['email'].dirty" class="help-block"><span style="color:red;">Email is required</span></div>
+                        </div>
+                        <div class="form-group" >                           
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password" [(ngModel)]="signUpDetails.password"  required />
+
+                            
+                            <div *ngIf="!registerForm.controls['password'].valid&&registerForm.controls['password'].dirty" class="help-block"><span style="color:red;">Password is required</span></div>
+                        </div>
+
+                       
+                        <input type="submit" value="Sign Up" (click)="register(registerForm.value)" [disabled]="!registerForm.valid"s>
+                                                
+                        <br><br>
+                        <a [routerLink]="['/login']" align="right" style="line-height: 0px; color: #fff">Already have an account?</a>
+                    </form>
+                   
+                </div>
+            </div>
+            <div class="wthree_footer_copy">
+                <p>© 2018 Tokenology. All rights reserved </p>
+            </div>
+        </div>
+    </div>
+</div>
+

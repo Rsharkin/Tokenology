@@ -1,0 +1,50 @@
+
+
+<div class="wthree-dot">
+	<a href="../index.html"><h1><img src="./assets/img/logo.png"></h1></a>
+	<div class="profile">
+		<div class="wrap">
+			<div class="content-main">
+				<div class="w3ls-subscribe w3ls-subscribe1">
+					<h4>Login</h4>
+					<p>Hi, Welcome back. Our tokenology team missed you.</p>
+			    <form [formGroup]="loginform">
+                        
+                        <div class="form-group" >
+                            <!-- <label for="username">Email</label> -->
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="loginDetail.email"  required />
+                              
+                            <div *ngIf="!loginform.controls['email'].valid&&loginform.controls['email'].dirty" class="help-block"> <span style="color:red;">Email is required</span></div>
+                        </div>
+                        <div class="form-group" >                           
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password" [(ngModel)]="loginDetail.password"  required />
+
+                            
+                            <div *ngIf="!loginform.controls['password'].valid&&loginform.controls['password'].dirty" class="help-block"><span style="color:red;">Password is required</span></div>
+                        </div>
+
+                        <a href="forgot.html" align="right" style="line-height: 0px;color: #fff;float: right;">Forgot Password?</a>
+
+                        <input type="submit" value="Login" (click)="login(loginform.value)" [disabled]="!loginform.valid">
+                                                <div class="row" style="margin-top: 30px;">
+                                                   <p style="line-height: 0px;color: #fff;">OR</p> <br>
+                                                  <p style="margin : 0px;line-height:0px;">
+                                                    <a [routerLink]="['/signupHome']" style="line-height: 0px;color: #fff;">SignUp?</a></p> 
+                                                </div>
+                                                
+                        <br><br>
+                           
+                    </form>
+                 
+				</div>
+			</div>
+			
+			<div class="wthree_footer_copy">
+				<p>© 2018 Tokenology. All rights reserved </p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
