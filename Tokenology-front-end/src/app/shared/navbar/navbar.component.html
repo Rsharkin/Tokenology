@@ -1,0 +1,100 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header hd-st">
+            <div class="logo lg-center text-center">
+                <a class="simple-text">            
+                        <img src="../../assets/images/tokenology-logo-black.png" alt="">                   
+                    </a>
+            </div>
+            <button type="button" class="navbar-toggle" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <!-- <h3><b>{{getTitle()}}</b></h3> -->
+        </div>
+        <div class="head-nav">
+            <div class="ui-grid-col" style="margin: 20px 0 0 0;">
+                <div class="navbar-header">
+                    <h3 style="font-weight: inherit;font-size: 24px;">{{ethBalance}}&nbsp;<span>ETH</span></h3>
+                </div>
+            </div>
+            <div class="ui-grid-col" style="margin:5px 0 0 30px">
+                <button class="btn btn-info btn-fill btn-wd btn-cus" type="submit" (click)="deposite()">Deposit</button>
+            </div>
+            <div class="ui-grid-col" style="margin:5px">
+                <button class="btn btn-info btn-fill btn-wd btn-cus" type="submit" (click)="withdraw()">Withdraw</button>
+            </div>
+        </div>
+        <div class="head-right">
+            <ul class="nav navbar-right">
+                <li style=""><a class="adminNameStyle">Welcome &nbsp; {{userName}} </a>
+                    <br>
+                </li>
+                <li>
+                    <a (click)="logout()">
+                                <i class="fa fa-sign-out log"></i>
+                            <a style="cursor: pointer;" class="log">Logout</a>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<p-dialog [(visible)]="depositDialog" header="Deposit ETH" modal="modal" [resizable]="false" [responsive]="true" showEffect="fade" modal="true" [dismissableMask]="fa" width="500" height="400">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="display: block; width: 500px; height: 340px; min-width: 150px; z-index: 1001; left: 70px; top:130px; opacity: 1;right:0;bottom:0;margin:0 auto">
+        <div class="ui-grid-row hd-md">
+            <div class="ui-grid-col-12">
+                <h2>QR CODE</h2>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <img alt="QR Code" style="height: 36%;display: block;margin-left: auto;margin-right: auto;width: 36%;" src="http://chart.apis.google.com/chart?cht=qr&amp;chs=300x300&amp;chl={{ethAddress}}" alt="QR Code">
+        </div>
+        <div class="ui-grid-row add-md">
+            <div class="ui-grid-col-12">
+                <p>{{ethAddress}}</p>
+            </div>
+        </div>
+        <div class="ui-grid-row btn-md">
+            <div class="ui-grid-col-12">
+                <button label="Cancel" (click)="cancelDeposite()" pbutton="" style="float:initial;width:90px;height:30px;display: block;margin-left: auto;margin-right: auto;" type="button" ng-reflect-label="Cancel" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text ui-clickable">Cancel</span></button>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="withdrawDialog" header="Withdraw ETH" [draggable]=false [resizable]="false" modal="true" responsive="true" showeffect="fade" width="500" height="400">
+    
+    
+        <form [formGroup]="withDrawForm" (ngSubmit)="sendTransaction()" style="margin: 40px 30px;">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="formGroupExampleInput">ETH address</label>
+                    <input type="text" formControlName="toAddress" [(ngModel)]="withdrawDetails.toAddress" class="form-control" id="formGroupExampleInput" placeholder="ETH address">
+                    <div style="color:red" *ngIf="!withDrawForm.controls['toAddress'].valid&&withDrawForm.controls['toAddress'].dirty">
+                        Address is required
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="formGroupExampleInput2">Amount</label>
+                    <input type="text" formControlName="amount" [(ngModel)]="withdrawDetails.amount" class="form-control" id="formGroupExampleInput2" placeholder="Amount">
+                     <div style="color:red" *ngIf="!withDrawForm.controls['amount'].valid&&withDrawForm.controls['amount'].dirty">
+                                <span *ngIf="withDrawForm.controls['amount'].errors['required']">Amount is required</span>
+                                <span *ngIf="withDrawForm.controls['amount'].errors['pattern']">Amount should be numbers </span>
+                            </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="formGroupExampleInput2">Password</label>
+                    <input type="password" formControlName="password" [(ngModel)]="withdrawDetails.password" class="form-control" id="formGroupExampleInput4" placeholder="Password">
+                    <div style="color:red" *ngIf="!withDrawForm.controls['password'].valid&&withDrawForm.controls['password'].dirty">
+                        Password is required
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="button" style="float:initial;width:90px;height:30px;" label="Cancel" pButton (click)="onCancel()"></button>
+                    <button pButton type="submit" style="width:90px;height:30px" label="Send" [disabled]="!withDrawForm.valid"></button>
+                </div>
+            </div>
+        </form>
+</p-dialog>

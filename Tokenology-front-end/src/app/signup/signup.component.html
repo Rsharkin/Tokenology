@@ -1,0 +1,63 @@
+<div class="wthree-dot" style="background: url(./assets/images/loginpage.jpg) no-repeat 0px 0px;">
+    <a ><h1><img src="./assets/images/logo.png" [routerLink]="['/home']" style="cursor: pointer;"></h1></a>
+    <div class="profile">
+        <div class="wrap">
+            <div class="content-main content-main1">
+                <div class="w3ls-subscribe">
+                    <h4>New Customer?</h4>
+                    <p>Hey! there's more to explore inside.</p>
+                    <form [formGroup]="registerForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [(ngModel)]="signUpDetails.firstName" required />
+                        
+                            <div style="color:red" *ngIf="!registerForm.controls['firstName'].valid&&registerForm.controls['firstName'].dirty">
+                                <span *ngIf="registerForm.controls['firstName'].errors['required']">First name is required</span>
+                                <span *ngIf="registerForm.controls['firstName'].errors['minlength']">First name must be at least 3 characters</span>
+                                <span *ngIf="registerForm.controls['firstName'].errors['pattern']&&!registerForm.controls['firstName'].errors['minlength']">First name should be alphabet </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [(ngModel)]="signUpDetails.lastName" required />
+                            <div style="color:red" *ngIf="!registerForm.controls['lastName'].valid&&registerForm.controls['lastName'].dirty">
+                                <span *ngIf="registerForm.controls['lastName'].errors['required']">Last name is required</span>
+                                <span *ngIf="registerForm.controls['lastName'].errors['minlength']">Last name must be at least 3 characters</span>
+                                <span *ngIf="registerForm.controls['lastName'].errors['pattern']&&!registerForm.controls['lastName'].errors['minlength']">Last name should be alphabet </span>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email" [(ngModel)]="signUpDetails.email" required />
+                            <div style="color:red" *ngIf="!registerForm.controls['email'].valid&&registerForm.controls['email'].dirty" class="help-block">
+                                <span *ngIf="registerForm.controls['email'].errors['required']">Email id is required</span>
+                              <span *ngIf="registerForm.controls['email'].errors['pattern']">Invalid email id</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password" [(ngModel)]="signUpDetails.password" required />
+                            <!--   <div *ngIf="!registerForm.controls['password'].valid&&registerForm.controls['password'].dirty" class="help-block">
+                                <span style="color:red;">Password is required</span>
+                            </div> -->
+                            <div style="color:red" *ngIf="!registerForm.controls['password'].valid&&registerForm.controls['password'].dirty">
+                                <span *ngIf="registerForm.controls['password'].errors['required']">Password is required</span>
+                                <span *ngIf="registerForm.controls['password'].errors['minlength']">password must be at least 6 characters</span>
+                                <span *ngIf="registerForm.controls['password'].errors['pattern']&&!registerForm.controls['password'].errors['minlength']">Password must contain one lowercase and one uppercase letter,number and special characters!</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" [(ngModel)]="signUpDetails.confirmPassword" required />
+                            <div *ngIf="!registerForm.controls['confirmPassword'].valid&&registerForm.controls['confirmPassword'].dirty&&!registerForm.controls['confirmPassword'].touched" class="help-block"><span style="color:red;">Confirm Password is required</span></div>
+                            
+                            <div *ngIf="registerForm.controls['confirmPassword'].touched&&registerForm.hasError('mismatchedPasswords')" class="help-block"><span style="color:red;"> Passwords do not match.</span></div>
+                        </div>
+                        <button pButton type="submit" style="width:131px;height:50px;" (click)="register(registerForm.value)" class="ui-button-secondary login-btn" label="Sign Up" [disabled]="!registerForm.valid"></button>
+                        <br>
+                        <br>
+                        <a [routerLink]="['/login']" align="right" style="line-height: 0px; color: #fff">Already have an account?</a>
+                    </form>
+                </div>
+            </div>
+            <div class="wthree_footer_copy">
+                <p>© 2018 Cryptual. All rights reserved </p>
+            </div>
+        </div>
+    </div>
+</div>

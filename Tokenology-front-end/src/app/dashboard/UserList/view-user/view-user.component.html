@@ -1,0 +1,218 @@
+<div class="ui-grid-row">
+    <div class="ui-grid-col-12 tbl-cl">
+        <h1 style="font-size: 30px;color: #000;margin-top: 30px;">TOKENS</h1>
+    </div>
+</div>
+
+<div id="parent" class="ui-fluid">
+    <div id="firstChild" class="ui-g">
+        <div id="secondChild" class="ui-g-12">
+            <div id="thirdChild" class="p-2">
+                <div class="ui-grid-row tbl-cl2">
+                    <div class="ui-grid-col-6 bd-no p-2">
+                        <p-dataTable [value]="tokenBalanceList" [rows]="5" [paginator]="true" [pageLinks]="1" [rowsPerPageOptions]="[5,10,20]">
+                            <p-header>MY TOKEN</p-header>
+                            <p-column field="sn" header="S.No"></p-column>
+                            <p-column field="tokenAddress" header="Token Name">
+                                <ng-template let-col let-data="rowData" pTemplate="body">
+                                    <span>
+                              <a href="https://etherscan.io/address/{{data.tokenAddress}}" target="_blank">{{(data["tokenAddress"]).substr(0,15)+"..."}}</a>
+                            </span>
+                                </ng-template>
+                            </p-column>
+                            <p-column field="result" header="Invested"></p-column>
+                            <ng-template pTemplate="paginatorRight">
+                                <button type="button" pButton icon="fa-cloud-upload"></button>
+                            </ng-template>
+                        </p-dataTable>
+                    </div>
+                    <div class="ui-grid-col-6 bd-no p-2">
+                        <p-dataTable [value]="transactionData" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [responsive]="true">
+                            <p-header>MY TRANSACTION</p-header>
+                            <p-column field="sn" header="S.No"></p-column>
+                            <p-column field="hash" header="Transaction Address">
+                                <ng-template let-col let-data="rowData" pTemplate="body">
+                                    <span>
+                              <a href="https://ropsten.etherscan.io/tx/{{data.hash}}" target="_blank">{{(data["hash"]).substr(0,15)+"..."}}</a>
+                            </span>
+                                </ng-template>
+                            </p-column>
+                            <p-column field="value" header="Value"></p-column>
+                            <ng-template pTemplate="paginatorLeft">
+                                <button type="button" pButton icon="fa-refresh"></button>
+                            </ng-template>
+                            <ng-template pTemplate="paginatorRight">
+                                <button type="button" pButton icon="fa-cloud-upload"></button>
+                            </ng-template>
+                        </p-dataTable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="accountType">
+    <div class="row">
+        <div class="accordian-btns">
+            <div class="row" style="margin-bottom: 30px;">
+                <div class="col-md-12 col-wth">
+                    <ul class="nav nav-tabs btn-group" role="group" role="tablist">
+                        <li class="active" role="presentation">
+                            <button class="my-btn1 " aria-controls="profile" data-toggle="tab" href="#Section1" role="tab" (click)="Ongoing()">Ongoing</button>
+                        </li>
+                        <li role="presentation">
+                            <button class="my-btn2" aria-controls="profile" data-toggle="tab" href="#Section2" role="tab" (click)="Completed()">Completed</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content " style="float:left;width:100%;margin-right: 15px;" *ngIf="!banner">
+                <div class="tab-pane fadeIn in active" id="Section1" role="tabpanel" *ngIf="complete">
+                    <div class="col-lg-12 col-md-12 text-center col-wth" *ngFor="let token of currentToken">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-3  col-wth text-center">
+                                        <div class="logo">
+                                            <a class="simple-text" href="https://www.creative-tim.com">   
+                                              <!-- <img alt="" src="../../assets/images/card1.png" width="250"> -->
+                                                <img alt="" src="assets/images/card1.png" width="250">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-9 col-md-12 col-lg-9 col-wth" style="background-color:#122f3b;border-bottom-right-radius: 6px;border-top-right-radius: 6px;padding: 20px 0;">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-sm-2 col-wth1">
+                                                            <h2>{{token.tokenName}}</h2>
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-2 col-wth2">
+                                                            <button class="btn btn-info btn-fill btn-wd " type="submit" (click)="viewIco(token.tokenAddress)">View</button>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-wth3">
+                                                            <div class="date">
+                                                                <h3>Starts in</h3>
+                                                                <h4 _ngcontent-c3="">{{token.startTime | date: 'yy-MM-dd HH:mm'}}</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-wth4">
+                                                            <div class="date">
+                                                                <h3>Ends in</h3>
+                                                                <h4 _ngcontent-c3="">{{token.endTime | date: 'yy-MM-dd HH:mm'}}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div _ngcontent-c3="" class="row">
+                                                <div _ngcontent-c3="" class="col-md-2 col-sm-2 col-wth5">
+                                                    <h3 _ngcontent-c3="" class="text-center">{{token.tokenTicker}}</h3>
+                                                </div>
+                                                <div _ngcontent-c3="" class="col-md-2 col-sm-3 col-wth6">
+                                                    <h3 _ngcontent-c3="" style="color: #fff;">Amount</h3>
+                                                    <h4 _ngcontent-c3="" style="color: #fff;">{{token.tokenSupply}}</h4>
+                                                </div>
+                                                <div _ngcontent-c3="" class="col-md-8 col-sm-7 col-wth7 ">
+                                                    <h3 _ngcontent-c3="" class="ft-left">Status</h3>
+                                                    <div _ngcontent-c3="" class="progress">
+                                                        <div _ngcontent-c3="" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 70%;height: 18px;background: #18d26e;">COMPLETED 70%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fadeIn" id="Section2" role="tabpanel" *ngIf="!complete">
+                    <div class="col-lg-12 col-md-12 text-center"  *ngFor="let token of completedToken">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-3 text-center">
+                                        <div class="logo">
+                                            <a class="simple-text" href="https://www.creative-tim.com">          
+                                                <img alt="" src="assets/images/card1.png" width="250">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-md-12 col-lg-9 col-wth" style="background-color:#122f3b;border-bottom-right-radius: 6px;    border-top-right-radius: 6px;padding: 20px 0;">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-sm-2 col-wth1">
+                                                            <h2>{{token.tokenName}}</h2>
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-2 col-wth2">
+                                                            <button class="btn btn-info btn-fill btn-wd " type="submit" (click)="InvestIco1()">View</button>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-wth3">
+                                                            <div class="date">
+                                                                <h3>Starts in</h3>
+                                                                <h4 _ngcontent-c3="">{{token.startTime | date: 'dd-mm-yyyy HH:mm'}}</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-wth4">
+                                                            <div class="date">
+                                                                <h3>Ends in</h3>
+                                                                <h4 _ngcontent-c3="">{{token.endTime | date: 'dd-mm-yyyy HH:mm'}}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div _ngcontent-c3="" class="row">
+                                                <div _ngcontent-c3="" class="col-md-2 col-sm-2 col-wth5">
+                                                    <h3 _ngcontent-c3="" class="text-center">{{token.tokenTicker}}</h3>
+                                                </div>
+                                                <div _ngcontent-c3="" class="col-md-2 col-sm-3 col-wth6">
+                                                    <h3 _ngcontent-c3="" style="color: #fff;">Amount</h3>
+                                                    <h4 _ngcontent-c3="" style="color: #fff;">{{token.tokenSupply}}</h4>
+                                                </div>                                                
+                                                <div _ngcontent-c3="" class="col-md-8 col-sm-7 col-wth7">
+                                                    <h3 _ngcontent-c3="" class="ft-left">Status</h3>
+                                                    <div _ngcontent-c3="" class="progress">
+                                                        <div _ngcontent-c3="" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 70%;height: 18px;background: #18d26e;">COMPLETED 70%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" *ngIf="banner">
+        <div class="tab-pane fade in active" id="Section1" role="tabpanel">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="logo">
+                                <a class="simple-text">            
+                                    <!-- <img alt="" src="../../assets/images/No-token-Found.png" width="250"> -->
+                                    <img alt="" src="assets/images/No-token-Found.png" width="250">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

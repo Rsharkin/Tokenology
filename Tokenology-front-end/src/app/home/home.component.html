@@ -1,0 +1,294 @@
+<!--==========================
+    Header
+  ============================-->
+<header id="header">
+    <div class="container-fluid">
+        <div id="logo" class="pull-left">
+            <!-- <h1><a href="#intro" class="scrollto">Tokenology</a></h1> -->
+            <a scrollTo href="#header"><img src="./assets/images/tokenology-logo_1.png"></a>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+        </div>
+        <nav id="nav-menu-container" *ngIf="active">
+            <ul class="nav-menu">
+                <li class="menu-active" ><a scrollTo href="#header">Home</a></li>             
+                <li><a scrollTo href="#portfolio" >Current Ico's</a></li>      
+                <li><a scrollTo href="#contact" >Contact</a></li>
+                <li style=""><a [routerLink]="['/dashboard/view-user']" class="adminNameStyle">My Account </a>
+                  <!--  <a class="adminNameStyle">{{userName}} </a> -->
+                </li>
+                <li>
+                    <a (click)="logout()">
+                         <i class="fa fa-sign-out log"></i>
+                         <a style="cursor: pointer;" class="log">Logout</a>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav id="nav-menu-container" *ngIf="!active">
+            <ul class="nav-menu">
+                <li class="menu-active" ><a scrollTo href="#header">Home</a></li>
+                <li><a scrollTo href="#portfolio" >Current Ico's</a></li>      
+                <li><a scrollTo href="#contact" >Contact</a></li>
+                <li><a [routerLink]="['/login']">LogIn</a></li>
+                <li><a [routerLink]="['/signupHome']">SignUp</a></li>
+            </ul>
+        </nav>
+        
+    </div>
+</header>
+<!-- #header -->
+<!--==========================
+    Intro Section
+  ============================-->
+<section id="intro">
+    <div class="intro-container">
+        <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators"></ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active" style="background-image: url('./assets/images/intro-carousel/1.jpg');">
+                    <div class="carousel-container">
+                        <div class="carousel-content">
+                            <h2>Invest smarter with Cryptual</h2>
+                            <p>ICOs ratings from top investors and experts</p>
+                            <a  style="cursor: pointer;" class="btn-get-started scrollto" (click)="getStarted()">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev"  role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+            <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        </div>
+    </div>
+</section>
+<!-- #intro -->
+<main id="main">
+    <section id="portfolio" class="section-bg" style="padding-top: 98px">
+        <div class="container">
+            <header class="section-header" style="position:  relative;">
+                <h3 class="section-title">Our Current ICOs</h3>
+                <div _ngcontent-c2="" class="form-group srchs-btn">
+                    <div _ngcontent-c2="" class="input-icon right" style="position: relative;">
+                        <input _ngcontent-c2="" class="form-control" placeholder="Search.." style="position: relative;border-radius: 31px 0px 0px 31px;border: 2px solid #d7d7d7;border-left-width: 2px;border-left-style: solid;border-left-color: rgb(215, 215, 215);width: 77%;right: 0px;top: 0;" type="text" [(ngModel)]="filterText">
+                        <button class="form-control" placeholder="Search.." style="position: absolute;border-radius: 0px 31px 31px 0px;border: 2px solid #d7d7d7;width: 23%;right: 0px;top: 0;border-left: 0;;" type="text"> <i _ngcontent-c2="" class="fa fa-search  font-blue" style="position: absolute;right: 15px;z-index: 9;color:#18d26e;left: 0;right: 0;top: 10px;bottom: 0;margin: 0 auto;"></i> </button>
+                    </div>
+                </div>
+            </header>
+            <br/>
+              <!-- <input name="term" [(ngModel)]="filterText"><br/>
+              <a (click)="previous()" class="btn btn-small btn-yellow btn-buy">Previous</a> -->
+            <div class="row portfolio-container" >
+                
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" *ngFor="let token of tokensList | filter:{ tokenTicker: filterText, tokenName: filterText, tokenSupply: filterText} : false | orderBy: 'endTime'">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="{{token.tokenImage}}" class="img-fluid" alt="">
+                            <a class="link-details" style="cursor: pointer;" title="Invest" (click)="invest_ICO(token.tokenAddress)">Invest</a>
+                        </figure>
+                        <div class="line-center"></div>
+                        <div class="portfolio-info">
+                            <h3><a href="#">{{token.tokenName}}</a></h3>
+                            <h4>{{token.tokenTicker}}</h4>
+                            <div class="br-line">
+                                
+                                <span>{{token.tokenSupply}}</span>
+                            </div>
+                            <div class="date">Ends on
+                                <p id="demo"></p>
+                                <p>{{token.endTime | date:'yyyy-MM-dd HH:mm'}}</p>
+                            </div>
+                            <br />
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- (click)="getData()" [disabled]="counter>=songs.length" -->
+           <!--  <div class="row">
+                <div class="col-md-12 view-btn">
+                  <button  class="btn-get-started scrollto btn-buy" (click)="getToken()">View more</button>
+                </div>
+           </div>  -->
+        </div>
+    </section>
+    <!--==========================
+      Call To Action Section
+    ============================-->
+    <section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <h3>About Us</h3>
+            <p style="font-size: 15px;font-weight: 600;"> It is a Web Platform which is totally based on blockchain technology. Which works in a marketplace for cryptocurrency crowdfunding, giving investors technical solution to purchase Tokens in a faster, safer and more reliable way. This will also be beneficial to those who may be new to ICOs, lack technical knowledge yet still want to participate in ICO industry.</p>
+            <!-- <a class="cta-btn" href="#">Call To Action</a> -->
+        </div>
+    </section>
+    <!-- #call-to-action -->
+    <!--==========================
+      Facts Section
+    ============================-->
+    <section id="facts" class="wow fadeIn">
+        <div class="container">
+            <header class="section-header">
+                <h3>Facts</h3>
+                <p style="font-size: 16px;">Some true facts about Cryptual and the market.</p>
+            </header>
+            <div class="row counters">
+                <div class="col-lg-4 col-6 text-center">
+                    <span data-toggle="counter-up">15</span>
+                    <p style="text-transform: uppercase;">Current Icos</p>
+                </div>
+                <div class="col-lg-4 col-6 text-center">
+                    <span data-toggle="counter-up">15</span>
+                    <p style="text-transform: uppercase;">Upcoming Icos</p>
+                </div>
+                <div class="col-lg-4 col-6 text-center">
+                    <span data-toggle="">24/7</span>
+                    <p style="text-transform: uppercase;">Hours Of Support</p>
+                </div>
+                <!-- <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">18</span>
+            <p>Hard Workers</p>
+            </div> -->
+            </div>
+            <div class="facts-img">
+                <img src="./assets/images/facts-img.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </section>
+    <!-- #facts -->
+    <!--==========================
+      Portfolio Section
+    ============================-->
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" style="padding-top: 98px !important;" class="section-bg wow fadeInUp">
+        <div class="container">
+            <div class="section-header">
+                <h3>Contact Us</h3>
+                <p style="font-size: 16px;">Have any questions? Talk to our Cryptual expert</p>
+            </div>
+            <div class="row contact-info">
+     
+                <div class="col-md-12">
+                    <div class="row center-bx">
+                        <div class="col-md-4">
+                            <div class="contact-email brd-lft-hm">
+                                <i class="fa fa-envelope"></i>
+                                <h3>Email</h3>
+                                <p>
+                                    <a >info@cryptual.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form _ngcontent-c7=""  class="contactForm ng-untouched ng-pristine ng-valid"  novalidate="" role="form" [formGroup]="contactForm">
+                <div _ngcontent-c7="" class="form-row">
+                    <div _ngcontent-c7="" class="form-group col-md-6" style="padding-left: 0;">
+                        <input _ngcontent-c7="" formControlName="name" [(ngModel)]="contactDetail.name" class="form-control"  id="name" name="name" placeholder="Your Name" type="text">
+                        <div *ngIf="!contactForm.controls['name'].valid&&contactForm.controls['name'].dirty" class="help-block"> <span style="color:red;">Name is required</span></div>
+                        </div>
+
+                    </div>
+                    <div _ngcontent-c7="" class="form-group col-md-6" style="padding-right: 0;">
+                        <input _ngcontent-c7="" class="form-control"  formControlName="email" [(ngModel)]="contactDetail.email" data-rule="email" id="email" name="email" placeholder="Your Email" type="email">
+                       
+                        <div style="color:red" *ngIf="!contactForm.controls['email'].valid&&contactForm.controls['email'].dirty" class="help-block">
+                                <span *ngIf="contactForm.controls['email'].errors['required']">Email id is required</span>
+                              <span *ngIf="contactForm.controls['email'].errors['pattern']">Invalid email id</span>
+                            </div>
+                        
+                </div>
+                <div _ngcontent-c7="" class="form-group">
+                    <input _ngcontent-c7="" formControlName="subject" [(ngModel)]="contactDetail.subject" class="form-control"  id="subject" name="subject" placeholder="Subject" type="text">
+                   <div *ngIf="!contactForm.controls['subject'].valid&&contactForm.controls['subject'].dirty" class="help-block"> <span style="color:red;">Subject is required</span>
+                        </div>
+                </div>
+                <div _ngcontent-c7="" class="form-group">
+                    <textarea _ngcontent-c7="" class="form-control txt-area" formControlName="message" [(ngModel)]="contactDetail.message" data-rule="required" name="message" placeholder="Message" rows="5"></textarea>
+                    <div *ngIf="!contactForm.controls['message'].valid&&contactForm.controls['message'].dirty" class="help-block"> <span style="color:red;">Message is required</span>
+                        </div>
+                </div>
+                <div _ngcontent-c7="" class="text-center">
+                    <button style="cursor: pointer;" _ngcontent-c7=""(click)="sendMessage(contactForm.value)"  class="btn-form-hm" style="" type="submit" [disabled]="!contactForm.valid">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- #contact -->
+</main>
+<!--==========================
+    Footer
+  ============================-->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-info">
+                    <!-- <h3>Tokenology</h3> -->
+                    <img src="./assets/images/tokenology-logo_1.png" style="margin-top: -0.8em;margin-left: -1.05em;">
+                    <br />
+                    <p>It is a Web Platform which is totally based on blockchain technology. Which works in a marketplace for cryptocurrency crowdfunding, giving investors technical solution to purchase Tokens in a faster, safer and more reliable way.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a scrollTo href="#portfolio" >Current Ico's</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of use</a></li>
+                        <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p style="color: #eee;font-family:sans-serif;">
+                        A108 Adam Street
+                        <br> New York, NY 535022
+                        <br> United States
+                        <br>Phone: +1 5589 55488 55
+                        <br>Email: info@example.com
+                        <br>
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div> -->
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                     <h4>Our Newsletter</h4>
+                    <p style="color: #eee; font-family: sans-serif;">Subscribe to our newsletter to stay updated</p>
+                    <br />
+                    <form action="" [formGroup]="subscribeForm">
+                         <div class="form-group">
+                          <input _ngcontent-c7="" class="form-control"  formControlName="email" [(ngModel)]="subscribeDetail.email" data-rule="email" id="email" name="email" placeholder="Your Email" type="email">
+                        <div style="color:red" *ngIf="!subscribeForm.controls['email'].valid&&subscribeForm.controls['email'].dirty" class="help-block">
+                                <span *ngIf="subscribeForm.controls['email'].errors['required']">Email id is required</span>
+                              <span *ngIf="subscribeForm.controls['email'].errors['pattern']">Invalid email id</span>
+                            </div>
+                
+                          </div>
+                         <button _ngcontent-c7=""(click)="subscribe(subscribeForm.value)"  class="btn-form-hm" style="" type="submit" [disabled]="!subscribeForm.valid" style="cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright 2018 Cryptual. All Rights Reserved
+        </div>
+    </div>
+</footer>
+<!-- #footer -->
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

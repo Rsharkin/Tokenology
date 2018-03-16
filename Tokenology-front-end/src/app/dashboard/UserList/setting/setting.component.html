@@ -1,0 +1,202 @@
+ <div class="ui-grid-row">
+    <div class="ui-grid-col-12">        
+        <section class="prf-box">
+            <div class="content">
+                  <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-bx">
+                                <div class="card-header hd-box" data-background-color="blue">
+                                    <h4 class="title">Settings</h4>
+                                    <p class="category">Change your Account Password</p>
+                                </div>
+                                <div class="accordian-btns">
+                                    <!-- <div class="row" style="margin: 30px 0;">
+                                        <div class="col-md-12 col-wth">                   
+                                            <ul class="nav nav-tabs btn-group center-line" role="group" role="tablist">
+                                                <li class="active" role="presentation">
+                                                    <button class="my-btn1 " aria-controls="profile" data-toggle="tab" href="#Section1" role="tab">Password</button></li>
+                                                <li role="presentation">
+                                                    <button class="my-btn2" aria-controls="profile" data-toggle="tab" href="#Section2" role="tab">Account Info</button>
+                                                </li>
+                                            </ul> 
+                                        </div>
+                                    </div>  -->
+                                    <div class="tab-content " style="float:left;width:100%;margin-right: 15px;">
+                                        <div class="tab-pane fadeIn in active" id="Section1" role="tabpanel">
+                                            <div class="col-lg-12 col-md-12 text-center col-wth">
+                                                <div class="card-content">
+                                                    <form [formGroup]="updatePasswordForm" (ngSubmit)="updateUserPassword()">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                  <span class="input input--hoshi">
+                                                                      <input class="input__field input__field--hoshi" type="password" id="input"  formControlName="currentPassword" style="border:0px solid transparent !important"  [(ngModel)]="updatePassword.currentPassword"> 
+                                                                      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-5">
+                                                                          <span class="input__label-content input__label-content--hoshi">
+                                                                              Current Password
+                                                                          </span>
+                                                                      </label>
+                                                                  </span>
+                                                                  <div *ngIf="!updatePasswordForm.controls['currentPassword'].valid&&updatePasswordForm.controls['currentPassword'].dirty" class="help-block"><span style="color:red;">Current Password is required</span></div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                  <span class="input input--hoshi">
+                                                                      <input class="input__field input__field--hoshi" type="password" id="input-2" formControlName="newPassword" style="border:0px solid transparent !important"  [(ngModel)]="updatePassword.newPassword">
+                                                                      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-5">
+                                                                          <span class="input__label-content input__label-content--hoshi">
+                                                                              New Password
+                                                                          </span>
+                                                                      </label>
+                                                                  </span>
+                                                                       <div style="color:red" *ngIf="!updatePasswordForm.controls['newPassword'].valid&&updatePasswordForm.controls['newPassword'].dirty">
+                             <span *ngIf="updatePasswordForm.controls['newPassword'].errors['required']">Password is required</span>
+                            <span *ngIf="updatePasswordForm.controls['newPassword'].errors['minlength']">Password must be at least 6 characters</span>
+                            <span *ngIf="updatePasswordForm.controls['newPassword'].errors['pattern']&&!updatePasswordForm.controls['newPassword'].errors['minlength']">Password Must Contain  one lowercase and one uppercase letter,number and special characters!</span>
+                    </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                 <span class="input input--hoshi">
+                                                                    <input class="input__field input__field--hoshi" type="password" id="input-3" formControlName="confirmNewPassword" style="border:0px solid transparent !important" [(ngModel)]="updatePassword.confirmNewPassword">
+                                                                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                                                                        <span class="input__label-content input__label-content--hoshi">    
+                                                                            Confirm Password
+                                                                        </span>
+                                                                    </label>
+                                                                </span>
+
+                  <div *ngIf="!updatePasswordForm.controls['confirmNewPassword'].valid&&updatePasswordForm.controls['confirmNewPassword'].dirty" class="help-block">
+                    <span style="color:red;">Confirm new password is required</span>
+                  </div>
+                  <div *ngIf="updatePasswordForm.controls['confirmNewPassword'].touched&&updatePasswordForm.hasError('mismatchedPasswords')" class="help-block">
+                    <span style="color:red;"> Confirm password do not match.</span>
+                  </div>
+            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary sub-pro "  [disabled]="!updatePasswordForm.valid">Update Password</button>
+                                                        <div class="clearfix"></div>
+                                                    </form>
+                                                </div>
+                                            </div>          
+                                        </div>
+                                        <div class="tab-pane fadeIn" id="Section2" role="tabpanel">
+                                            <div class="col-lg-12 col-md-12 text-center">
+                                                <div class="card-content">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-md-12 file-img">
+                                                                <div class="file-field">
+                                                                    <div class="mb-4">
+                                                                        <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic">
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <div class="btn btn-mdb-color btn-rounded">
+                                                                            <span>Add photo</span>
+                                                                            <input type="file">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>    
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                  <span class="input input--hoshi">
+                                                                      <input class="input__field input__field--hoshi" type="text" id="input-1">
+                                                                        <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                                                                          <span class="input__label-content input__label-content--hoshi">    
+                                                                              Organisation Name
+                                                                          </span>
+                                                                    </label>
+                                                                  </span>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                  <span class="input input--hoshi">
+                                                                      <input class="input__field input__field--hoshi" type="text" id="input-2" />
+                                                                      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-5">
+                                                                          <span class="input__label-content input__label-content--hoshi">
+                                                                              Website Name
+                                                                          </span>
+                                                                      </label>
+                                                                  </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="row">                                        
+                                                            <div _ngcontent-c3="" class="col-md-6">
+                                                                    <span _ngcontent-c3="" class="input input--hoshi">
+                                                                            <input _ngcontent-c3="" class="input__field input__field--hoshi" id="input-1" style="display: none;">
+                                                                            <label _ngcontent-c3="" style="width: 100%;float: left;clear: both;">
+                                                                                <span _ngcontent-c3="" class=" input__label-content--hoshi" style="margin-left: 0;float: left;position: relative;">
+                                                                                              Organisation Name
+                                                                                </span>
+                                                                              </label>
+                                                                                                                      
+                                                                                                                                                          
+                                                                        <select _ngcontent-c3="" class="selectpicker" style="width: 100%;margin: 10px 0;">
+                                                                            <optgroup _ngcontent-c3="" label="Picnic">
+                                                                                <option _ngcontent-c3="">Mustard</option>
+                                                                                <option _ngcontent-c3="">Ketchup</option>
+                                                                                <option _ngcontent-c3="">Relish</option>
+                                                                            </optgroup>
+                                                                            <optgroup _ngcontent-c3="" label="Camping">
+                                                                                <option _ngcontent-c3="">Tent</option>
+                                                                                <option _ngcontent-c3="">Flashlight</option>
+                                                                                <option _ngcontent-c3="">Toilet Paper</option>
+                                                                            </optgroup>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>                                        
+                                                                <div class="col-md-6 file-img">
+                                                                    
+                                                                    <div class="file-field">
+                                                                        <div class="mb-4">
+                                                                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic">
+                                                                        </div>
+                                                                        <div class="d-flex justify-content-center">
+                                                                            <div class="btn btn-mdb-color btn-rounded">
+                                                                                <span>Add photo</span>
+                                                                                <input type="file">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>    
+                                                                </div>
+                                                            </div>  -->   
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                 <span class="input input--hoshi">
+                                                                    <input class="input__field input__field--hoshi" type="text" disabled="" id="input-3">
+                                                                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                                                                        <span class="input__label-content input__label-content--hoshi">    
+                                                                            xyz@gmail.com
+                                                                        </span>
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                 <span class="input input--hoshi">
+                                                                    <input class="input__field input__field--hoshi" type="text" disabled="" id="input-3">
+                                                                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                                                                        <span class="input__label-content input__label-content--hoshi">    
+                                                                            Phone Number
+                                                                        </span>
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary sub-pro " >Update Profile</button>
+                                                        <div class="clearfix"></div>
+                                                    </form>
+                                                </div>
+                                            </div>          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+            </div>  
+        </section>        
+    </div>
+</div>

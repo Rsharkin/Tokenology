@@ -1,0 +1,102 @@
+<div class="ui-grid-row">
+    <div class="ui-grid-col-12">
+        <main id="main">
+            <section id="portfolio" class="section-bg">
+                <div class="container">
+                    <header class="section-header" style="position:  relative;">
+                        <h3 class="section-title">Our Current ICOs</h3>
+                        <div _ngcontent-c2="" class="form-group srchs-btn">
+                            <div _ngcontent-c2="" class="input-icon right" style="position: relative;">
+                                <input _ngcontent-c2="" class="form-control" placeholder="Search.." style="position: relative;border-radius: 31px 0px 0px 31px;border: 2px solid #d7d7d7;border-left-width: 2px;border-left-style: solid;border-left-color: rgb(215, 215, 215);width: 77%;right: 0px;top: 0;" type="text" [(ngModel)]="filterText">
+                                <button class="form-control" placeholder="Search.." style="position: absolute;border-radius: 0px 31px 31px 0px;border: 2px solid #d7d7d7;width: 23%;right: 0px;top: 0;border-left: 0;;" type="text"> <i _ngcontent-c2="" class="fa fa-search  font-blue" style="position: absolute;right: 15px;z-index: 9;color:#18d26e;left: 0;right: 0;top: 10px;bottom: 0;margin: 0 auto;"></i> </button>
+                            </div>
+                        </div>
+                    </header>
+                    <br />
+                    <div class="row portfolio-container">
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" *ngFor="let token of tokensList">
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="{{tokenImage}}" class="img-fluid" alt="">
+                        <a  style="cursor: pointer;" class="link-details" title="Invest" (click)="invest_ICO(token.tokenAddress)">
+                                        Invest
+                                    </a>
+                                </figure>
+                                <div class="line-center"></div>
+                                   <div class="portfolio-info">
+                            <h3><a >{{token.tokenName}}</a></h3>
+                            <h4>{{token.tokenTicker}}</h4>
+                            <div class="br-line">
+                                
+                                <span>{{token.tokenSupply}}</span>
+                            </div>
+                            <div class="date">Ends on
+                                <p id="demo"></p>
+                                <p>{{token.endTime | date:'yyyy-MM-dd HH:mm'}}</p>
+                            </div>
+                            <br />
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12 view-btn">
+                            <button class="btn-get-started scrollto btn-buy" (click)="getToken()">View more</button>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+
+
+<!-- <div class="ui-grid-row">
+    <div class="ui-grid-col-12">
+        <main id="main">
+            <section id="portfolio" class="section-bg">
+                <div class="container">
+                    <header class="section-header" style="position:  relative;">
+                        <h3 class="section-title">Our Current ICOs</h3>
+                        <div _ngcontent-c2="" class="form-group srchs-btn">
+                            <div _ngcontent-c2="" class="input-icon right" style="position: relative;">
+                                <input _ngcontent-c2="" class="form-control" placeholder="Search.." style="position: relative;border-radius: 31px 0px 0px 31px;border: 2px solid #d7d7d7;border-left-width: 2px;border-left-style: solid;border-left-color: rgb(215, 215, 215);width: 77%;right: 0px;top: 0;" type="text" [(ngModel)]="filterText">
+                                <button class="form-control" placeholder="Search.." style="position: absolute;border-radius: 0px 31px 31px 0px;border: 2px solid #d7d7d7;width: 23%;right: 0px;top: 0;border-left: 0;;" type="text"> <i _ngcontent-c2="" class="fa fa-search  font-blue" style="position: absolute;right: 15px;z-index: 9;color:#18d26e;left: 0;right: 0;top: 10px;bottom: 0;margin: 0 auto;"></i> </button>
+                            </div>
+                        </div>
+                    </header>
+                    <br />
+                    <div class="row portfolio-container">
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" >
+                            <div class="portfolio-wrap">
+                                <figure>
+                                    <img src="{{tokenImage}}" class="img-fluid" alt="">
+                                    <a href="#" class="link-details" title="Invest">
+                                        Invest
+                                    </a>
+                                </figure>
+                                <div class="line-center"></div>
+                                <div class="portfolio-info">
+                                    <h3><a href="#">TOKIA</a></h3>
+                                    <h4>Banking</h4>
+                                    <div class="br-line">
+                                        <p>Market cap</p>
+                                        <span>50 000 000 USD</span>
+                                    </div>
+                                    <div class="date">Ends in
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 view-btn">
+                            <button class="btn-get-started scrollto btn-buy" (click)="getToken()">View more</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div> -->
